@@ -1,87 +1,38 @@
 import React, { Component } from 'react';
 import './App.css';
-import Form from './Form'
-import List from './List';
-import { Button, FormText } from "reactstrap";
-import { connect } from 'react-redux'
-import { compose } from 'redux'
-import {
-  loadPessoas,
-  savePessoa,
-  destroyPessoa,
-  createSorteio,
-  updatePessoa,
-  Creators
-} from "./store/ducks/pessoas";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+
+import MembersPage from "./containers/sorteios/members/Page";
+import SorteioIntroPage from "./containers/sorteios/IntroPage";
+import SorteioTestPage from "./containers/sorteios/TestPage";
+import SorteiosPage from "./containers/sorteios/ListPage";
+import SorteiosFormPage from "./containers/sorteios/FormPage";
+import Alert from './components/Alert';
 class App extends Component {
-  componentDidMount() {
-    this.props.loadPessoas();
-  }
-  submit(values) {
-    if (values._id) 
-      this.props.updatePessoa(values);
-    else 
-      this.props.savePessoa(values);
-  }
-  onDeleteClick(pessoa) {
-    this.props.destroyPessoa(pessoa);
-  }
-  onEditClick(pessoa) {
-    this.props.selecionar(pessoa);
-  }
-  onSorteioClick() {
-    this.props.createSorteio();
-  }
-  onRevelarMouseEnter(pessoa) {
-    this.props.revelar(pessoa);
-  }
-  onRevelarMouseLeave() {
-    this.props.revelar();
-  }
   render() {
-    const { pessoas, revelado, selecionado } = this.props;
-    return (
-      <div className="App">
-        <header className="App-header">
-          <Form onSubmit={this.submit.bind(this)} initialValues={selecionado}/>
-          {pessoas.length > 2 && (
-            <Button
-              onClick={this.onSorteioClick.bind(this)}
-              color="info"
-              size="lg"
-              className="m-3"
-            >
-              {" "}
-              Sortear amigos secretos
-            </Button>
-          )}
-          <List
-            pessoas={pessoas}
-            revelado={revelado}
-            onDeleteClick={this.onDeleteClick.bind(this)}
-            onEditClick={this.onEditClick.bind(this)}
-            onRevelarMouseEnter={this.onRevelarMouseEnter.bind(this)}
-            onRevelarMouseLeave={this.onRevelarMouseLeave.bind(this)}
-          />
-        </header>
-      </div>
-    );
+    const { alert } = this.props
+    return <div className="App">
+        {alert.message && <Alert color={alert.type}>{alert.message}</Alert>}
+        <Switch>
+          <Route path="/sorteios/" exact component={SorteiosPage} />
+          <Route path="/sorteios/form" exact component={SorteiosFormPage} />
+          <Route path="/sorteios/:id/members" component={MembersPage} />
+          <Route path="/sorteios/:id/intro" component={SorteioIntroPage} />
+          <Route path="/sorteios/:id/test" component={SorteioTestPage} />
+          <Redirect to="/sorteios/" />
+        </Switch>
+      </div>;
   }
 }
 
-
 const mapStateToProps = state => ({
-  pessoas: state.pessoas.list,
-  selecionado: state.pessoas.selecionado,
-  revelado: state.pessoas.revelado,
+  alert: state.alert
 });
 
-const mapDispatchToProps = {
-  loadPessoas,
-  savePessoa,
-  destroyPessoa,
-  createSorteio,
-  updatePessoa,
-  ...Creators
-};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const mapDispatchToProps = {};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

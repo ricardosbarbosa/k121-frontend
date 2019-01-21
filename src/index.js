@@ -6,10 +6,15 @@ import * as serviceWorker from './serviceWorker';
 import "bootstrap/dist/css/bootstrap.min.css";
 import store from "./store/store";
 import { Provider } from "react-redux";
+import { history } from "./store/ducks";
+import { ConnectedRouter } from "connected-react-router";
+
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history} forceRefresh={false}>
+      <App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById("root")
 );

@@ -9,5 +9,3 @@ export const tooYoung = value => value && value < 13 ? "You do not meet the mini
 export const aol = value => value && /.+@aol\.com/.test(value) ? "Really? You still use AOL for your email?" : undefined;
 export const alphaNumeric = value => value && /[^a-zA-Z0-9 ]/i.test(value) ? "Only alphanumeric characters" : undefined;
 export const phoneNumber = value => value && !/^(0|[1-9][0-9]{9})$/i.test(value) ? "Invalid phone number, must be 10 digits" : undefined;
-
-// const minValue13 = minValue(13);
