@@ -13,11 +13,14 @@ import SorteioForm from '../../components/SorteioForm';
 class Form extends Component {
   submit(values) {
     if (values._id) {
-      this.props.updateSorteio(values);
-      this.props.history.push("/sorteios/members")
+      const { updateSorteio, history } = this.props;
+      updateSorteio(values);
+      history.push(`/sorteios/${values._id}/members`);
     }
     else {
-      this.props.saveSorteio(values);
+      const { saveSorteio, selected, history } = this.props
+      saveSorteio(values);
+      // history.push(`/sorteios/${selected._id}/members`);
     }
   }
 

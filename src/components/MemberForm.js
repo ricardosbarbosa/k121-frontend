@@ -44,4 +44,4 @@ class MemberForm extends React.Component {
   }
 }
 
-export default reduxForm({ form: "friendForm", enableReinitialize: true })(MemberForm);
+export default reduxForm({ form: "memberForm", enableReinitialize: true })(MemberForm);

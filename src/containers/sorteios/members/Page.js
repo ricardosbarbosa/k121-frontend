@@ -24,13 +24,13 @@ class MembersPage extends Component {
     else
       saveMember(values, sorteio._id);
   }
-  onDeleteClick(friend) {
+  onDeleteClick(member) {
     const { destroyMember, sorteio } = this.props;
-    destroyMember(friend, sorteio._id);
+    destroyMember(member, sorteio._id);
   }
-  onEditClick(friend) {
+  onEditClick(member) {
     const { selectMember } = this.props;
-    selectMember(friend);
+    selectMember(member);
   }
 
   back() {

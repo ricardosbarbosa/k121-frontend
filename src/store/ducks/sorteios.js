@@ -76,6 +76,10 @@ const INITIAL_STATE = {
   selected: null
 };
 
+const clear = (state = INITIAL_STATE, action) => {
+  return INITIAL_STATE;
+};
+
 const load = (state = INITIAL_STATE, action) => {
   return { ...state, list: action.payload.data };
 };
@@ -86,24 +90,34 @@ const test = (state = INITIAL_STATE, action) => {
     testResult: action.payload.data
   };
 };
+
 const add = (state = INITIAL_STATE, action) => {
-  return { ...state, list: [...state.list, action.payload.data], selected: null };
+  return { 
+    ...state, 
+    list: [...state.list, action.payload.data], 
+    selected: action.payload.data 
+  };
 };
+
 const update = (state = INITIAL_STATE, action) => {
-  return {
-    ...state, list: state.list.map(p => {
+  return { 
+    ...state, 
+    list: state.list.map(p => {
       if (p._id === action.payload.data._id) return action.payload.data;
       return p;
-    }), selected: null };
+    }), 
+    selected: action.payload.data 
+  };
 };
+
 const remove = (state = INITIAL_STATE, action) => {
-  return { ...state, list: state.list.filter(p => {
-    return p._id !== action.payload.config.reduxSourceAction.payload.id;
-  }) };
+  return { 
+    ...state, 
+    list: state.list.filter(p => p._id !== action.payload.config.reduxSourceAction.payload.id),
+    selected: null
+  };
 };
-const clear = (state = INITIAL_STATE, action) => {
-  return INITIAL_STATE;
-};
+
 const select = (state = INITIAL_STATE, action) => {
   return {
     ...state,

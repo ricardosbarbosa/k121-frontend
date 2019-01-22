@@ -40,4 +40,4 @@ class SorteioForm extends React.Component {
   }
 }
 
-export default reduxForm({ form: "friendForm", enableReinitialize: true })(SorteioForm);
+export default reduxForm({ form: "sorteioForm", enableReinitialize: true })(SorteioForm);
