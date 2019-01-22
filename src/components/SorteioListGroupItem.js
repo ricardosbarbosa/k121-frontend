@@ -5,10 +5,10 @@ const SorteioListGroupItem = ({ sorteio, onEditClick, onDeleteClick }) => {
   return <ListGroupItem>
       <div className="float-right">
         <ButtonGroup>
-          <Button outline onClick={() => onEditClick(sorteio)}>
+        <Button outline color="primary" onClick={() => onEditClick(sorteio)}>
             <i className="fas fa-pencil-alt" /> Members
           </Button>
-          <Button outline onClick={() => onDeleteClick(sorteio)}>
+          <Button color="danger" onClick={() => onDeleteClick(sorteio)}>
             <i className="far fa-trash-alt" />
           </Button>
         </ButtonGroup>
