@@ -18,9 +18,9 @@ class Form extends Component {
       history.push(`/sorteios/${values._id}/members`);
     }
     else {
-      const { saveSorteio, selected, history } = this.props
+      const { saveSorteio, history } = this.props
       saveSorteio(values);
-      // history.push(`/sorteios/${selected._id}/members`);
+      history.push(`/sorteios/`);
     }
   }
 
