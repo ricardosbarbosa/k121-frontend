@@ -6,7 +6,7 @@ const SorteioListGroupItem = ({ sorteio, onEditClick, onDeleteClick }) => {
       <div className="float-right">
         <ButtonGroup>
           <Button outline onClick={() => onEditClick(sorteio)}>
-            <i className="fas fa-pencil-alt" /> Entrar
+            <i className="fas fa-pencil-alt" /> Members
           </Button>
           <Button outline onClick={() => onDeleteClick(sorteio)}>
             <i className="far fa-trash-alt" />
