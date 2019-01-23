@@ -13,21 +13,25 @@ class SorteioIntroPage extends Component {
     testSorteio(sorteio._id);
     history.push(`/sorteios/${sorteio._id}/test`);
   }
+
   handleSortearClick() {
     const { sorteio, history, performSorteio } = this.props;
     performSorteio(sorteio._id);
     history.push(`/sorteios/`);
   }
-  back() {
+
+  handleBackClick() {
     const { sorteio, history } = this.props
     history.push(`/sorteios/${sorteio._id}/members`);
   }
+
   render() {
     const { sorteio } = this.props;
     if (!sorteio) return <Redirect to="/sorteios" />;
+    
     return (
       <SorteioIntro
-        handleBackClick={this.back.bind(this)}
+        handleBackClick={this.handleBackClick.bind(this)}
         handleSortearClick={this.handleSortearClick.bind(this)}
         handleTestClick={this.handleTestClick.bind(this)}
       />

@@ -8,19 +8,24 @@ import {
 import SorteioListGroup from "../../components/SorteioListGroup";
 
 class SorteioPage extends Component {
+  
   componentDidMount() {
     this.props.loadSorteios();
   }
+
   handleDeleteClick(sorteio) {
     this.props.destroySorteio(sorteio);
   }
+
   handleEditClick(sorteio) {
     this.props.selectSorteio(sorteio);
     this.props.history.push(`/sorteios/${sorteio._id}/members`);
   }
+
   handleNewClick() {
     this.props.history.push("/sorteios/form");
   }
+  
   render() {
     const { sorteios } = this.props;
     return <SorteioListGroup 

@@ -4,15 +4,20 @@ import SorteioTest from '../../components/SorteioTest';
 import { Redirect } from "react-router-dom";
 
 class SorteioPage extends Component {
-  back() {
+  handleBackClick() {
     const { sorteio, history } = this.props;
     history.push(`/sorteios/${sorteio._id}/intro`);
   }
+
   render() {
     const { sorteio, testResult } = this.props;
     if (!sorteio) return <Redirect to="/sorteios" />;
     
-    return <SorteioTest list={testResult} handleBackClick={this.back.bind(this)} />;
+    return (
+      <SorteioTest 
+        list={testResult} 
+        handleBackClick={this.handleBackClick.bind(this)} />
+    )
   }
 }
 

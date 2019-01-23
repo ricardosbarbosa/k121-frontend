@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, FormFeedback, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form, CardHeader, Card, CardBody, Container, FormFeedback, FormGroup, Label, Input } from "reactstrap";
 import { Field, reduxForm } from "redux-form";
 import { required } from "../validations";
 
@@ -31,12 +31,22 @@ const renderFieldRow = ({
 
 class SorteioForm extends React.Component {
   render() {
-    return <Form onSubmit={this.props.handleSubmit} id="myForm" className="my-3" >
-        <Field name="name" label="Nome" validate={[required]} type="text" component={renderFieldRow} placeholder="Fulano de Tal" />
-        <Button color="warning" form="myForm" key="submit" className="float-right">
-          <i className="fas fa-plus"></i> Save
-        </Button>
-      </Form>;
+    return <Container>
+        <Card>
+          <CardHeader>
+            Escolha o nome do seu sorteio de amigo secreto
+          </CardHeader>
+        </Card>
+        <CardBody>
+          <Form onSubmit={this.props.handleSubmit} id="myForm" className="my-3">
+            <Field name="name" label="Nome" validate={[required]} type="text" component={renderFieldRow} placeholder="Fulano de Tal" />
+            <Button color="warning" form="myForm" key="submit" className="float-right">
+              <i className="fas fa-plus" /> Save
+            </Button>
+          </Form>;
+        </CardBody>
+      </Container>;
+    
   }
 }
 

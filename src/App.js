@@ -3,7 +3,7 @@ import './App.css';
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import MembersPage from "./containers/sorteios/members/Page";
+import MembersPage from "./containers/members/Page";
 import SorteioIntroPage from "./containers/sorteios/IntroPage";
 import SorteioTestPage from "./containers/sorteios/TestPage";
 import SorteiosPage from "./containers/sorteios/ListPage";

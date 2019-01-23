@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { Container, CardBody } from "reactstrap";
 import {
   loadSorteios,
   saveSorteio,
@@ -11,6 +10,7 @@ import {
 import SorteioForm from '../../components/SorteioForm';
 
 class Form extends Component {
+  
   submit(values) {
     if (values._id) {
       const { updateSorteio, history } = this.props;
@@ -26,15 +26,13 @@ class Form extends Component {
 
   render() {
     const { selected } = this.props;
-    return <Container>
-        <CardBody>
-          <h2>Escolha o nome do seu sorteio de amigo secreto</h2>
-          <SorteioForm onSubmit={this.submit.bind(this)} initialValues={selected} />
-        </CardBody>
-      </Container>;
+    return (
+      <SorteioForm 
+        initialValues={selected} 
+        onSubmit={this.submit.bind(this)} />
+    )
   }
 }
-
 
 const mapStateToProps = state => ({
   selected: state.sorteios.selected
