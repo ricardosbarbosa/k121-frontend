@@ -1,40 +1,11 @@
 import React from "react";
-import { Button, Form, Card, FormText, CardBody, CardHeader, FormFeedback, FormGroup, Label, Input } from "reactstrap";
-import { Field, reduxForm } from "redux-form";
-import {
-  required,
-  email, 
-} from "../validations";
+import { Button, Form, Card, FormText, CardBody, CardHeader } from "reactstrap";
+import { Field } from "redux-form";
+import { required, email } from "../validations";
+import { renderFieldRow } from "./utils";
 
-const renderFieldRow = ({
-  children,
-  placeholder,
-  input,
-  label,
-  type,
-  meta: { touched, error, warning }
-}) => (
-  <div>
-    <FormGroup >
-      <Label for={label} >
-        {label}
-      </Label>
-      <Input
-        type={type}
-        {...input}
-        name={label}
-        id={label}
-        valid={touched && (!error || !warning)}
-        invalid={touched && !!(error || warning)}
-      />
-      <FormFeedback>{error}</FormFeedback>
-    </FormGroup>
-  </div>
-);
-
-class MemberForm extends React.Component {
-  render() {
-    const { handleSubmit, sorteio } = this.props;
+const MemberForm = ({ handleSubmit, sorteio }) => {
+  
     return <Card className="m-3">
       <CardHeader>
         Adicione membros ao sorteio
@@ -50,7 +21,6 @@ class MemberForm extends React.Component {
         </Form>
       </CardBody>
     </Card>
-  }
 }
 
-export default reduxForm({ form: "memberForm", enableReinitialize: true })(MemberForm);
+export default MemberForm

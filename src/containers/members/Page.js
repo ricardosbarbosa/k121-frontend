@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Redirect} from "react-router-dom";
 import MemberForm from "../../components/MemberForm";
 import MemberListGroup from "../../components/MemberListGroup";
+import { reduxForm } from "redux-form";
 import {
   loadMembers,
   saveMember,
@@ -11,6 +12,9 @@ import {
   updateMember,
   Creators
 } from "../../store/ducks/members";
+
+
+const MemberFormWithRedux = reduxForm({ form: "memberForm", enableReinitialize: true })(MemberForm);
 
 class MembersPage extends Component {
   
@@ -48,7 +52,7 @@ class MembersPage extends Component {
     const { sorteio, members } = this.props
     if (!sorteio) return <Redirect to="/sorteios" />
     return <Container>
-      <MemberForm 
+      <MemberFormWithRedux
         sorteio={sorteio}
         onSubmit={this.submit.bind(this)} 
         initialValues={members.selected} />
@@ -60,7 +64,6 @@ class MembersPage extends Component {
     </Container>;
   }
 }
-
 
 const mapStateToProps = state => ({
   members: state.members,

@@ -8,7 +8,12 @@ import {
   Creators
 } from "../../store/ducks/sorteios";
 import SorteioForm from '../../components/SorteioForm';
+import { reduxForm } from "redux-form";
 
+const SorteioFormWithRedux = reduxForm({
+  form: "sorteioForm",
+  enableReinitialize: true
+})(SorteioForm);
 class Form extends Component {
   
   submit(values) {
@@ -27,7 +32,7 @@ class Form extends Component {
   render() {
     const { selected } = this.props;
     return (
-      <SorteioForm 
+      <SorteioFormWithRedux
         initialValues={selected} 
         onSubmit={this.submit.bind(this)} />
     )

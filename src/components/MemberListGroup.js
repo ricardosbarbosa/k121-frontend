@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { ListGroup, Card, CardBody, CardFooter, Button } from "reactstrap";
 import MemberListGroupItem from "./MemberListGroupItem";
 
-export default class MemberListGroup extends Component {
-  render() {
-    const { members, onDeleteClick, onEditClick, onBackClick, onGoSorteioClick } = this.props;
-    
+const MemberListGroup = ({
+    members,
+    onDeleteClick,
+    onEditClick,
+    onBackClick,
+    onGoSorteioClick
+  }) => {
     return <Card className="m-3">
         <CardBody>
           <ListGroup>
@@ -35,5 +38,6 @@ export default class MemberListGroup extends Component {
           </div>
         </CardFooter>
       </Card>;
-  }
 }
+
+export default MemberListGroup
